@@ -13,9 +13,10 @@ public class ProductsController(IProductRepository repo) : ControllerBase
     
 
     [HttpGet]
-public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts()
+public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(string? brand,
+string? type,string? sort)
 {
-    return Ok(await repo.GetProductsAsync());
+    return Ok(await repo.GetProductsAsync(brand,type,sort));
 }
 [HttpGet("{id:int}")] // api/products/2
 public async Task<ActionResult<Product>> GetProduct(int id){
@@ -57,6 +58,15 @@ public async Task<ActionResult> DeleteProduct(int id)
     return BadRequest("Problem deleting the product");
     
 
+}
+[HttpGet("brands")]
+public async Task<ActionResult<IReadOnlyList<string>>> GetBrands(){
+    return Ok(await repo.GetBrandAsync());
+}
+
+[HttpGet("types")]
+public async Task<ActionResult<IReadOnlyList<string>>> GetTypes(){
+    return Ok(await repo.GetTypesAsync());
 }
 private bool ProductExist(int id){
     return repo.ProductExist(id);
