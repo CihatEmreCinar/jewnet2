@@ -19,5 +19,19 @@ var app = builder.Build();
 // Map Controllers (API Endpoints)
 app.MapControllers();
 
+
+try
+{
+    using var scope =app.Services.CreateScope();
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredKeyedService<StoreContext>;
+    await context.Database.MigrateAsync();
+}
+catch (System.Exception)
+{
+    
+    throw;
+}
+
 // Run the application
 app.Run();
