@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Controllers;
 [ApiController]
 [Route("api/[controller]")]
-public class ProductsController(IProductRepository repo) : ControllerBase
+public class ProductsController(IGenericRepository<Product> repo) : ControllerBase
 {
     
 
@@ -16,18 +16,18 @@ public class ProductsController(IProductRepository repo) : ControllerBase
 public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(string? brand,
 string? type,string? sort)
 {
-    return Ok(await repo.GetProductsAsync(brand,type,sort));
+    return Ok(await repo.ListAllAsync());
 }
 [HttpGet("{id:int}")] // api/products/2
 public async Task<ActionResult<Product>> GetProduct(int id){
-    var product=await repo.GetProductByIdAsync(id);
+    var product=await repo.GetByIdAsync(id);
     if(product == null) return NotFound();
     return product;
 }
 [HttpPost]
 public async Task<ActionResult<Product>> CreateProduct(Product product){
-    repo.AddProduct(product);
-    if(await repo.SaveChangesAsync())
+    repo.Add(product);
+    if(await repo.SaveAllAsync())
     {
         return CreatedAtAction("GetProduct", new {id=product.Id},product);
     }
@@ -38,8 +38,8 @@ public async Task<ActionResult> UpdateProduct(int id,Product product)
 {
     if(product.Id!=id || !ProductExist(id)) 
         return BadRequest("Cannot update this product!");
-   repo.UpdateProduct(product);
-    if(await repo.SaveChangesAsync())
+   repo.Update(product);
+    if(await repo.SaveAllAsync())
     {
         return NoContent();
     }
@@ -48,10 +48,10 @@ public async Task<ActionResult> UpdateProduct(int id,Product product)
 [HttpDelete("{id:int}")]
 public async Task<ActionResult> DeleteProduct(int id)
 {
-    var product=await repo.GetProductByIdAsync(id);
+    var product=await repo.GetByIdAsync(id);
     if(product==null) return NotFound();
-    repo.DeleteProduct(product);
-     if(await repo.SaveChangesAsync())
+    repo.Remove(product);
+     if(await repo.SaveAllAsync())
     {
         return NoContent();
     };
@@ -61,14 +61,17 @@ public async Task<ActionResult> DeleteProduct(int id)
 }
 [HttpGet("brands")]
 public async Task<ActionResult<IReadOnlyList<string>>> GetBrands(){
-    return Ok(await repo.GetBrandAsync());
+    //TODO: IMPLEMENT METHOD
+    return Ok();
 }
 
 [HttpGet("types")]
 public async Task<ActionResult<IReadOnlyList<string>>> GetTypes(){
-    return Ok(await repo.GetTypesAsync());
+        //TODO: IMPLEMENT METHOD
+
+    return Ok();
 }
 private bool ProductExist(int id){
-    return repo.ProductExist(id);
+    return repo.Exist(id);
 }
 }
