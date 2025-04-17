@@ -1,6 +1,8 @@
 using System;
+using System.Net.Sockets;
 using Core.Entities;
 using Core.Interfaces;
+using Core.Specification;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,13 +12,14 @@ namespace API.Controllers;
 [Route("api/[controller]")]
 public class ProductsController(IGenericRepository<Product> repo) : ControllerBase
 {
-    
-
     [HttpGet]
 public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(string? brand,
 string? type,string? sort)
-{
-    return Ok(await repo.ListAllAsync());
+    {
+    var spec = new ProductSpecification(brand,type,sort);
+    var products=await repo.ListAsync(spec);
+
+    return Ok(products);
 }
 [HttpGet("{id:int}")] // api/products/2
 public async Task<ActionResult<Product>> GetProduct(int id){
