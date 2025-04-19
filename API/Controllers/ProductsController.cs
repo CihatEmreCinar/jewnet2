@@ -1,5 +1,6 @@
 using System;
 using System.Net.Sockets;
+using System.Reflection.Metadata;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specification;
@@ -64,15 +65,14 @@ public async Task<ActionResult> DeleteProduct(int id)
 }
 [HttpGet("brands")]
 public async Task<ActionResult<IReadOnlyList<string>>> GetBrands(){
-    //TODO: IMPLEMENT METHOD
-    return Ok();
+    var spec=new BrandListSpecification();
+    return Ok(await repo.ListAsync(spec));
 }
 
 [HttpGet("types")]
 public async Task<ActionResult<IReadOnlyList<string>>> GetTypes(){
-        //TODO: IMPLEMENT METHOD
-
-    return Ok();
+    var spec=new TypeListSpecification();
+    return Ok(await repo.ListAsync(spec));
 }
 private bool ProductExist(int id){
     return repo.Exist(id);
