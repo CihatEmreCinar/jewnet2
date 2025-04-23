@@ -1,6 +1,7 @@
 using System;
 using System.Net.Sockets;
 using System.Reflection.Metadata;
+using API.RequestHelpers;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specification;
@@ -19,6 +20,9 @@ public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(
     {
     var spec = new ProductSpecification(specParams);
     var products=await repo.ListAsync(spec);
+    var count = await repo.CountAsync(spec);
+
+    var pagination=new Pagination<Product>(specParams.PageIndex,specParams.PageSize,count,products);
 
     return Ok(products);
 }
