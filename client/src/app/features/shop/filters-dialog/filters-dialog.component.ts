@@ -3,6 +3,8 @@ import { ShopService } from '../../../core/services/shop.service';
 import {MatDivider, MatDividerModule} from '@angular/material/divider';
 import {MatListModule, MatListOption, MatSelectionList} from '@angular/material/list';
 import { MatButton } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-filters-dialog',
   standalone:true,
@@ -10,11 +12,24 @@ import { MatButton } from '@angular/material/button';
     MatDivider,
     MatSelectionList,
     MatListOption,
-    MatButton
+    MatButton,
+    FormsModule
   ],
   templateUrl: './filters-dialog.component.html',
   styleUrl: './filters-dialog.component.scss'
 })
 export class FiltersDialogComponent {
   shopService=inject(ShopService);
+  private dialogRef=inject(MatDialogRef<FiltersDialogComponent>);
+  data=inject(MAT_DIALOG_DATA);
+
+  selectedBrands: string[]=this.data.selectedBrands;
+  selectTypes:string[] =this.data.selectTypes;
+  
+  applyFilters(){
+    this.dialogRef.close({
+      selectedBrands:this.selectedBrands,
+      selectTypes:this.selectTypes,
+    })
+  }
 }
