@@ -24,12 +24,12 @@ export class FiltersDialogComponent {
   data=inject(MAT_DIALOG_DATA);
 
   selectedBrands: string[]=this.data.selectedBrands;
-  selectTypes:string[] =this.data.selectTypes;
+  selectedTypes:string[] =this.data.selectedTypes;
   
   applyFilters(){
     this.dialogRef.close({
       selectedBrands:this.selectedBrands,
-      selectTypes:this.selectTypes,
+      selectedTypes:this.selectedTypes
     })
   }
 }
