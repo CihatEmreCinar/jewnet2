@@ -8,16 +8,90 @@ $customTheme: mat.define-theme();
 
 @include mat.core();
 
-.custom-theme{
-    @include mat.all-component-themes($customTheme);
+.custom-theme {
+  @include mat.all-component-themes($customTheme);
 
-    //override the button styles
-    .mdc-button, .mat-raised-button, .mdc-stroked-button, .mdc-flat-button{
-        @apply rounded-md
-    }
+  .mdc-button, .mat-raised-button, .mdc-stroked-button, .mdc-flat-button {
+    @apply rounded-md;
+  }
 }
 
 .container {
-    @apply mx-auto max-w-screen-2xl px-6 py-4 bg-white shadow-lg rounded-xl;
+  @apply mx-auto max-w-screen-2xl px-6 py-4 bg-white shadow-lg rounded-xl;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.text-primary {
+  color: #7d00fa;
+}
+
+button.match-input-height {
+  height: var(--mat-form-field-container-height) !important;
+}
+
+/* =============== GRID YAPISI =============== */
+
+// Genel layout: sidebar + content
+.shop-grid-layout {
+  @apply grid gap-6;
+
+  // Büyük ekranlarda 1/4 oranlı sol panel ve sağ içerik
+  @screen lg {
+    grid-template-columns: 1fr 4fr;
   }
-  
+
+  // Küçük ekranlarda tek kolon (üst üste)
+  @screen md {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Sol panel içeriği (arama, filtre vs.)
+.sidebar {
+  @apply flex flex-col gap-4;
+}
+
+// Ürün grid alanı (responsive kolonlar)
+.grid-cols-responsive {
+  @apply grid gap-4;
+
+  @screen xl {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  @screen lg {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @screen md {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @screen sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+ 
+}
+
+// Form (arama çubuğu)
+.search-form {
+  @apply relative flex items-center;
+}
+
+.search-input {
+  @apply w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg;
+}
+
+.search-button {
+  @apply absolute right-2 top-1.5;
+}
+
+// Responsive butonlar (küçük ekranda full width)
+@media (max-width: 768px) {
+  .sidebar button {
+    @apply w-full justify-center;
+  }
+}
