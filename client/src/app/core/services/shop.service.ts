@@ -16,7 +16,11 @@ export class ShopService {
   types: string[] = [];
   brands: string[] = [];
 
+<<<<<<< HEAD
  getProducts(shopParams: ShopParams) {
+=======
+  getProducts(shopParams: ShopParams) {
+>>>>>>> 90de392442af933843815a6202b5cac2f1b7ee6a
     let params = new HttpParams();
 
     if (shopParams.brands.length > 0) {
@@ -34,10 +38,15 @@ export class ShopService {
     if (shopParams.search) {
       params = params.append('search', shopParams.search);
     }
+<<<<<<< HEAD
 
     params = params.append('pageSize', shopParams.pageSize);
     params = params.append('pageIndex', shopParams.pageNumber);
 
+=======
+    
+    params=params.append('pageSize',20);
+>>>>>>> 90de392442af933843815a6202b5cac2f1b7ee6a
     this.logger.log('Ürünler API çağrısı başlatıldı');
     return this.http.get<Pagination<Product>>(this.baseUrl + 'products', {params});
   }

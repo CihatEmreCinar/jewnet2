@@ -9,9 +9,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';     
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { MatListOption, MatSelectionList, MatSelectionListChange } from '@angular/material/list';
+<<<<<<< HEAD
 import { ShopParams } from '../../shared/models/shopParams';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
+=======
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { FormsModule } from '@angular/forms';
+import { ShopParams } from '../../shared/models/shopParams';
+>>>>>>> 90de392442af933843815a6202b5cac2f1b7ee6a
 import { Pagination } from '../../shared/models/pagination';
 
 @Component({
@@ -28,7 +34,10 @@ import { Pagination } from '../../shared/models/pagination';
     MatMenuTrigger,
     MatPaginator,
     FormsModule
+<<<<<<< HEAD
     
+=======
+>>>>>>> 90de392442af933843815a6202b5cac2f1b7ee6a
   ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss'

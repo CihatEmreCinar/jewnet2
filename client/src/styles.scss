@@ -41,6 +41,7 @@ button.match-input-height {
   @screen lg {
     grid-template-columns: 1fr 4fr;
   }
+<<<<<<< HEAD
 
   // Küçük ekranlarda tek kolon (üst üste)
   @screen md {
@@ -95,3 +96,13 @@ button.match-input-height {
     @apply w-full justify-center;
   }
 }
+=======
+  
+.text-primary {
+    color: #7d00fa;
+}
+
+button.match-input-height {
+    height: var(--mat-form-field-container-height) !important;
+}
+>>>>>>> 90de392442af933843815a6202b5cac2f1b7ee6a
