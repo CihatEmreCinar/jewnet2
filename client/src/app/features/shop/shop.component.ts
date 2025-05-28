@@ -1,24 +1,18 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ShopService } from '../../core/services/shop.service';
 import { Product } from '../../shared/models/product';
-import { MatCardModule } from '@angular/material/card';
+import { MatCard, MatCardModule } from '@angular/material/card';
 import { ProductItemComponent } from "./product-item/product-item.component";
 import { MatDialog } from '@angular/material/dialog';
 import { FiltersDialogComponent } from './filters-dialog/filters-dialog.component';
-import { MatButtonModule } from '@angular/material/button'; 
-import { MatIconModule } from '@angular/material/icon';     
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { MatListOption, MatSelectionList, MatSelectionListChange } from '@angular/material/list';
-<<<<<<< HEAD
 import { ShopParams } from '../../shared/models/shopParams';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { FormsModule } from '@angular/forms';
-=======
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { FormsModule } from '@angular/forms';
-import { ShopParams } from '../../shared/models/shopParams';
->>>>>>> 90de392442af933843815a6202b5cac2f1b7ee6a
 import { Pagination } from '../../shared/models/pagination';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-shop',
@@ -26,22 +20,19 @@ import { Pagination } from '../../shared/models/pagination';
   imports: [
     MatCardModule,
     ProductItemComponent,
-    MatButtonModule,  
-    MatIconModule,
+    MatButton,
+    MatIcon,
     MatMenu,
     MatSelectionList,
     MatListOption,
     MatMenuTrigger,
     MatPaginator,
     FormsModule
-<<<<<<< HEAD
-    
-=======
->>>>>>> 90de392442af933843815a6202b5cac2f1b7ee6a
   ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss'
 })
+
 export class ShopComponent {
   private shopService = inject(ShopService);
   private dialogService = inject(MatDialog);

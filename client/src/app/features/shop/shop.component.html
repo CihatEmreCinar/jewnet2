@@ -1,18 +1,10 @@
-<<<<<<< HEAD
 @if (products && products.count > 0) {
     <div class="flex flex-col gap-3">
-=======
- <div class="flex flex-col gap-3">
->>>>>>> 90de392442af933843815a6202b5cac2f1b7ee6a
         <div class="flex justify-between">
             <mat-paginator
                 class="bg-white"
                 (page)="handlePageEvent($event)"
-<<<<<<< HEAD
                 [length]="products.count"
-=======
-                [length]="products?.count"
->>>>>>> 90de392442af933843815a6202b5cac2f1b7ee6a
                 [pageSize]="shopParams.pageSize"
                 [showFirstLastButtons]="true"
                 [pageSizeOptions]="pageSizeOptions"
@@ -34,11 +26,7 @@
                     [(ngModel)]="shopParams.search"
                 />
                 <button mat-icon-button type="submit" 
-<<<<<<< HEAD
                     class="absolute inset-y-0 right-8 top-2 flex items-center pl-3"
-=======
-                    class="absolute inset-y-0 right-16 top-0 flex items-center pl-3"
->>>>>>> 90de392442af933843815a6202b5cac2f1b7ee6a
                 >
                     <mat-icon>search</mat-icon>
                 </button>
@@ -58,11 +46,7 @@
         </div>
     
         <div class="grid grid-cols-5 gap-4">
-<<<<<<< HEAD
             @for (product of products.data; track product.id) {
-=======
-            @for (product of products?.data; track product.id) {
->>>>>>> 90de392442af933843815a6202b5cac2f1b7ee6a
             <app-product-item [product]="product"></app-product-item>
             }
         </div>
@@ -76,9 +60,5 @@
                 </mat-list-option>
             }
         </mat-selection-list>
-<<<<<<< HEAD
     </mat-menu>
-  }
-=======
-    </mat-menu>
->>>>>>> 90de392442af933843815a6202b5cac2f1b7ee6a
+}
