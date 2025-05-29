@@ -2,17 +2,20 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
+import { SnackbarService } from '../services/snackbar.service';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
+  const snackbar = inject(SnackbarService);
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
       switch (err.status) {
         case 400:
-          alert(err.error?.title || 'Bad Request');
+          if(err.error.errors)
+          snackbar.error(err.error?.title || err.error);
           break;
         case 401:
-          alert(err.error?.title || 'Unauthorized');
+          snackbar.error(err.error?.title || err.error);
           break;
         case 404:
           // Angular route geçerli ama API’den 404 geldi
@@ -23,7 +26,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           router.navigateByUrl('/server-error');
           break;
         default:
-          alert('Something went wrong');
+          snackbar.error('Something went wrong');
           break;
       }
 
