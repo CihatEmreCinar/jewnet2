@@ -18,7 +18,9 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
               modelStateErrors.push(err.error.errors[key])
             }
           }
+
           throw modelStateErrors.flat();
+
         } else {
           snackbar.error(err.error.title || err.error);
         }
