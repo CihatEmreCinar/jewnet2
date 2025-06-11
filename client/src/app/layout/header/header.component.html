@@ -16,7 +16,10 @@
 
     <!-- Right-side actions -->
     <div class="flex items-center gap-4">
-      <a routerLink="/cart" routerLinkActive="active" matBadge="5" matBadgeSize="large" class="custom-badge mt-1 mr-1">
+      <a routerLink="/cart" routerLinkActive="active"
+      matBadge="{{cartService.itemCount()}}"
+      matBadgeSize="large"
+      class="custom-badge mt-1 mr-1">
         <mat-icon>shopping_cart</mat-icon>
       </a>
       <button mat-stroked-button>Login</button>
