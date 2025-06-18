@@ -13,7 +13,7 @@ export const routes: Routes = [
     {path:'shop',component:ShopComponent},
     {path:'shop/:id',component:ProductDetailsComponent},
     {path:'cart',component:CartComponent},
-    {path:'ckeckout',component:CheckoutComponent},
+    {path:'checkout',component:CheckoutComponent},
     {path:'test-error',component:TestErrorComponent},
     {path:'not-found',component:NotFoundComponent},
     {path:'server-error',component:ServerErrorComponent},
