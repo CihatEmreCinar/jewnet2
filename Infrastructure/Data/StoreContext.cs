@@ -10,6 +10,7 @@ namespace Infrastructure.Data
 
         // DbSet'ler burada tanımlanacak
         public DbSet<Product> Products { get; set; }  // Örnek DbSet
+        public DbSet<Address> Addresses{ get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
