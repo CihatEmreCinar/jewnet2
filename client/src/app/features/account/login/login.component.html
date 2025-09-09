@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+  <mat-card class="w-full max-w-md p-6 bg-white shadow-lg rounded-xl">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col">
+      <!-- Başlık -->
+      <div class="text-center mb-6">
+        <h1 class="text-2xl sm:text-3xl font-semibold text-primary">Login</h1>
+      </div>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="w-full mb-4">
+        <mat-label>Email address</mat-label>
+        <input formControlName="email" type="email" placeholder="name@example.com" matInput />
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field appearance="outline" class="w-full mb-6">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" type="password" placeholder="Password" matInput />
+      </mat-form-field>
+
+      <!-- Buton -->
+      <button mat-flat-button color="primary" type="submit" class="w-full py-2 rounded-lg text-white">
+        Sign in
+      </button>
+    </form>
+  </mat-card>
+</div>
