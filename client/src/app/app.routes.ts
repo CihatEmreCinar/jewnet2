@@ -17,7 +17,7 @@ export const routes: Routes = [
     {path:'cart',component:CartComponent},
     {path:'checkout',component:CheckoutComponent},
     {path:'account/login',component:LoginComponent},
-    {path:'account/retgister',component:RegisterComponent},
+    {path:'account/register',component:RegisterComponent},
     {path:'test-error',component:TestErrorComponent},
     {path:'not-found',component:NotFoundComponent},
     {path:'server-error',component:ServerErrorComponent},
